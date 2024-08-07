@@ -39,3 +39,5 @@ spring:
         activation-url: http://localhost:4200/activate-account
 server:
   port: 8088
+
+

@@ -42,7 +42,7 @@
     <body>
         <div class="container">
             <h1>Activation account</h1>
-            <p class="greeting" th:text="'Hello ' + ${username} + ','"></p>
+            <p class="greeting" th:text="'hello' + ${username} + ','"></p>
             <p>Thank you for signing up! Please use the following activation code to activate your account</p>
             <div class="activation-code">
                 <span th:text="${activation_code}"></span>
