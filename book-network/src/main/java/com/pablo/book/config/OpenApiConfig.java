@@ -51,5 +51,6 @@ import io.swagger.v3.oas.annotations.servers.Server;
         bearerFormat = "JWT",
         in = SecuritySchemeIn.HEADER
 )
+// http://localhost:8088/api/v1/swagger-ui/index.html
 public class OpenApiConfig {
 }
