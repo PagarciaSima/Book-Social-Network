@@ -102,7 +102,6 @@ public class AuthenticationService {
         );
         var claims = new HashMap<String, Object>();
         var user = ((User) auth.getPrincipal());
-        System.out.println("método authenticate" + user);
         claims.put("fullName", user.fullName());
         var jwtToken = jwtService.generateToken(claims, user);
         return AuthenticationResponse

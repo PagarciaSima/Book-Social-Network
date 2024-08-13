@@ -24,13 +24,7 @@ public class AuthenticationController {
 
     @PostMapping("/authenticate")
     public ResponseEntity<AuthenticationResponse> authenticate(@RequestBody @Valid AuthenticationRequest request){
-        try{
             return ResponseEntity.ok(service.authenticate(request));
-
-        }catch(Exception e){
-            e.printStackTrace();
-            return null;
-        }
     }
 
     @GetMapping("/activate-account")
