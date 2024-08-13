@@ -34,7 +34,8 @@ export class LoginComponent {
       next: (res) => {
         this.tokenService.token = res.token as string;
         this.router.navigate(['books'])
-      }, error: (err) => {
+      },
+      error: (err) => {
         console.log(err);
         if (err.error.validationErrors) {
           this.errorMsg = err.error.validationErrors;
