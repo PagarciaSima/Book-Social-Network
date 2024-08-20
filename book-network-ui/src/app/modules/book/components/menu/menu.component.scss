@@ -4,9 +4,9 @@ li > a {
         border-radius: 5px;
         text-decoration: underline;
     }
-    &:active{
+    &.active{
         color: #24a7e9;
         border-radius: 5px;
-        font-size: 1.25em;
+        font-size: 1.10em;
     }
 }
