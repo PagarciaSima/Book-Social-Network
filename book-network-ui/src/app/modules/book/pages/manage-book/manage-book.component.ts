@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
-import { BookRequest } from 'src/app/services/models';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { BookRequest, BookResponse } from 'src/app/services/models';
 import { BookService } from 'src/app/services/services';
 
 @Component({
@@ -8,10 +8,11 @@ import { BookService } from 'src/app/services/services';
   templateUrl: './manage-book.component.html',
   styleUrls: ['./manage-book.component.scss']
 })
-export class ManageBookComponent {
+export class ManageBookComponent implements OnInit{
   
   errorMsg: Array<string> = [];
   selectedBookCover: any;
+  originalCover: any;
   selectedPicture: string | undefined;
   selectedFileName: string = '';
   bookRequest: BookRequest = {
@@ -23,8 +24,31 @@ export class ManageBookComponent {
 
   constructor(
     private bookService: BookService,
-    private router: Router
-  ) {}
+    private router: Router,
+    private activatedRoute: ActivatedRoute
+  ) { }
+  
+  ngOnInit(): void {
+    const bookId = this.activatedRoute.snapshot.params['bookId'];
+    if (bookId) {
+      this.bookService.findById({
+        'book-id': bookId
+      }).subscribe({
+        next: (book) => {
+         this.bookRequest = {
+           id: book.id,
+           title: book.title as string,
+           authorName: book.authorName as string,
+           isbn: book.isbn as string,
+           synopsis: book.synopsis as string,
+           shareable: book.shareable
+         };
+         this.originalCover = book.cover;
+         this.selectedPicture='data:image/jpg;base64,' + book.cover;
+        }
+      });
+    }
+  }
 
   onFileSelected(event: Event) {
     const input = event.target as HTMLInputElement;
@@ -45,16 +69,21 @@ export class ManageBookComponent {
       body: this.bookRequest
     }).subscribe({
       next: (bookId) => {
-        this.bookService.uploadBookCoverPicture({
-          body: {
-            file: this.selectedBookCover
-          },
-          'book-id': bookId
-        }).subscribe({
-          next: () => {
+        if (this.selectedBookCover) {
+
+          this.bookService.uploadBookCoverPicture({
+            body: {
+              file: this.selectedBookCover
+            },
+            'book-id': bookId
+          }).subscribe({
+            next: () => {
+              this.router.navigate(['/books/my-books']);
+            }
+          });
+        } else {
             this.router.navigate(['/books/my-books']);
-          }
-        });
+        }
       },
       error: (err) => {
         console.log(err.error);

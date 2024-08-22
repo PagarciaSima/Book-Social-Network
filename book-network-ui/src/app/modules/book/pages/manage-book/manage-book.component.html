@@ -6,7 +6,7 @@
     </div>
     <div class="d-flex gap-2 justify-content-center mt-5">
         <div class="col-3 me-3">
-            <img class="rounded-1 w-100" [src]="selectedPicture || 'https://picsum.photos/1900/1900'" alt="...">
+            <img class="rounded-1 w-100" [src]="selectedPicture || (originalCover ? 'data:image/jpg;base64,' + originalCover : 'https://picsum.photos/1900/1900')" alt="...">
             <div class="mt-2">
                 <!-- Hidden file input -->
                 <input #fileInput type="file" (change)="onFileSelected($event)" accept="image/*" style="display: none;">
