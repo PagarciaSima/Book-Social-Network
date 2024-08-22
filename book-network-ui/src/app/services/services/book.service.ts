@@ -102,7 +102,7 @@ export class BookService extends BaseService {
    *
    * This method sends `multipart/form-data` and handles request body of type `multipart/form-data`.
    */
-  uploadBookCoverPicture$Response(params?: UploadBookCoverPicture$Params, context?: HttpContext): Observable<StrictHttpResponse<{
+  uploadBookCoverPicture$Response(params: UploadBookCoverPicture$Params, context?: HttpContext): Observable<StrictHttpResponse<{
 }>> {
     return uploadBookCoverPicture(this.http, this.rootUrl, params, context);
   }
@@ -113,7 +113,7 @@ export class BookService extends BaseService {
    *
    * This method sends `multipart/form-data` and handles request body of type `multipart/form-data`.
    */
-  uploadBookCoverPicture(params?: UploadBookCoverPicture$Params, context?: HttpContext): Observable<{
+  uploadBookCoverPicture(params: UploadBookCoverPicture$Params, context?: HttpContext): Observable<{
 }> {
     return this.uploadBookCoverPicture$Response(params, context).pipe(
       map((r: StrictHttpResponse<{
