@@ -222,26 +222,26 @@ updateShareableStatus(params: UpdateShareableStatus$Params, context?: HttpContex
     );
   }
 
-  /** Path part for operation `updateArchivedStatus()` */
-  static readonly UpdateArchivedStatusPath = '/books/archived/{bookd-id}';
+  /** Path part for operation updateArchivedStatus() */
+  static readonly UpdateArchivedStatusPath = '/books/archived/{book-id}';
 
   /**
-   * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `updateArchivedStatus()` instead.
+   * This method provides access to the full HttpResponse, allowing access to response headers.
+   * To access only the response body, use updateArchivedStatus() instead.
    *
    * This method doesn't expect any request body.
    */
-  updateArchivedStatus$Response(params?: UpdateArchivedStatus$Params, context?: HttpContext): Observable<StrictHttpResponse<number>> {
+  updateArchivedStatus$Response(params: UpdateArchivedStatus$Params, context?: HttpContext): Observable<StrictHttpResponse<number>> {
     return updateArchivedStatus(this.http, this.rootUrl, params, context);
   }
 
   /**
    * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `updateArchivedStatus$Response()` instead.
+   * To access the full response (for headers, for example), updateArchivedStatus$Response() instead.
    *
    * This method doesn't expect any request body.
    */
-  updateArchivedStatus(params?: UpdateArchivedStatus$Params, context?: HttpContext): Observable<number> {
+  updateArchivedStatus(params: UpdateArchivedStatus$Params, context?: HttpContext): Observable<number> {
     return this.updateArchivedStatus$Response(params, context).pipe(
       map((r: StrictHttpResponse<number>): number => r.body)
     );
