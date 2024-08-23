@@ -72,8 +72,16 @@ export class MyBooksComponent implements OnInit{
   }
   
   shareBook(book: BookResponse) {
-      
+    console.log("SHARE");
+    this.bookService.updateShareableStatus({
+      'book-id': book.id as number
+    }).subscribe({
+      next: (): void => {
+        book.shareable = !book.shareable;
+      }
+    });
   }
+
   
   archiveBook(book: BookResponse) {
 

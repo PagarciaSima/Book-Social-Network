@@ -1,4 +1,6 @@
-<div class="card mx-2 mt-2" style="width: 20rem;">
+<div class="card mx-2 mt-2 border-3 shadow" style="width: 20rem;" [class.border-success]="book.shareable"
+     [class.border-warning]="book.archived"
+>
     <img height="200" [src]="bookCover" class="card-img-top p-2" alt="...">
     <div class="card-body overflow-scroll p-4">
         <h5 class="card-title fs-6 text-nowrap fw-bold mb-2 mt-3">

@@ -147,30 +147,30 @@ export class BookService extends BaseService {
     );
   }
 
-  /** Path part for operation `updateShareableStatus()` */
-  static readonly UpdateShareableStatusPath = '/books/shareable/{bookd-id}';
+/** Path part for operation updateShareableStatus() */
+static readonly UpdateShareableStatusPath = '/books/shareable/{book-id}';
 
-  /**
-   * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `updateShareableStatus()` instead.
-   *
-   * This method doesn't expect any request body.
-   */
-  updateShareableStatus$Response(params?: UpdateShareableStatus$Params, context?: HttpContext): Observable<StrictHttpResponse<number>> {
-    return updateShareableStatus(this.http, this.rootUrl, params, context);
-  }
+/**
+ * This method provides access to the full HttpResponse, allowing access to response headers.
+ * To access only the response body, use updateShareableStatus() instead.
+ *
+ * This method doesn't expect any request body.
+ */
+updateShareableStatus$Response(params: UpdateShareableStatus$Params, context?: HttpContext): Observable<StrictHttpResponse<number>> {
+  return updateShareableStatus(this.http, this.rootUrl, params, context);
+}
 
-  /**
-   * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `updateShareableStatus$Response()` instead.
-   *
-   * This method doesn't expect any request body.
-   */
-  updateShareableStatus(params?: UpdateShareableStatus$Params, context?: HttpContext): Observable<number> {
-    return this.updateShareableStatus$Response(params, context).pipe(
-      map((r: StrictHttpResponse<number>): number => r.body)
-    );
-  }
+/**
+ * This method provides access only to the response body.
+ * To access the full response (for headers, for example), updateShareableStatus$Response() instead.
+ *
+ * This method doesn't expect any request body.
+ */
+updateShareableStatus(params: UpdateShareableStatus$Params, context?: HttpContext): Observable<number> {
+  return this.updateShareableStatus$Response(params, context).pipe(
+    map((r: StrictHttpResponse<number>): number => r.body)
+  );
+}
 
   /** Path part for operation `returnBorrowBook()` */
   static readonly ReturnBorrowBookPath = '/books/borrow/return/{book-id}';
