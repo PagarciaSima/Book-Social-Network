@@ -322,12 +322,12 @@ updateShareableStatus(params: UpdateShareableStatus$Params, context?: HttpContex
     );
   }
 
-  /** Path part for operation `findAllBorrowedBooks()` */
+  /** Path part for operation findAllBorrowedBooks() */
   static readonly FindAllBorrowedBooksPath = '/books/borrowed';
 
   /**
-   * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `findAllBorrowedBooks()` instead.
+   * This method provides access to the full HttpResponse, allowing access to response headers.
+   * To access only the response body, use findAllBorrowedBooks() instead.
    *
    * This method doesn't expect any request body.
    */
@@ -337,7 +337,7 @@ updateShareableStatus(params: UpdateShareableStatus$Params, context?: HttpContex
 
   /**
    * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `findAllBorrowedBooks$Response()` instead.
+   * To access the full response (for headers, for example), findAllBorrowedBooks$Response() instead.
    *
    * This method doesn't expect any request body.
    */
