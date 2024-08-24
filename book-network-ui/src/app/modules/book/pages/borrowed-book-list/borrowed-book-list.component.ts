@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { BorrowedBookResponse, PageResponseBorrowedBookResponse } from 'src/app/services/models';
-import { BookService } from 'src/app/services/services';
+import { BorrowedBookResponse, FeedbackRequest, PageResponseBorrowedBookResponse } from 'src/app/services/models';
+import { BookService, FeedbackService } from 'src/app/services/services';
 
 @Component({
   selector: 'app-borrowed-book-list',
@@ -9,13 +9,19 @@ import { BookService } from 'src/app/services/services';
 })
 export class BorrowedBookListComponent implements OnInit {
 
-
   borrowedBooks: PageResponseBorrowedBookResponse = {};
   page: number = 0;
   size: number = 5;
+  selectedBook: BorrowedBookResponse | undefined = undefined;
+  feedbackRequest: FeedbackRequest = {
+    bookId: 0,
+    comment: '',
+    note: 0
+  };
 
   constructor(
-    private bookService: BookService
+    private bookService: BookService,
+    private feedbackService: FeedbackService
   ) {}
   
   ngOnInit(): void {
@@ -34,7 +40,8 @@ export class BorrowedBookListComponent implements OnInit {
   }
 
   returnBorrowedBook(book: BorrowedBookResponse) {
-    throw new Error('Method not implemented.');
+    this.selectedBook = book;
+    this.feedbackRequest.bookId = book.id as number;
   }
 
   goToFirstPage() {
@@ -64,5 +71,29 @@ export class BorrowedBookListComponent implements OnInit {
 
   get isLastPage(): boolean {
     return this.page == this.borrowedBooks.totalPages as number - 1;
+  }
+
+  returnBook(withFeedback: boolean) {
+    this.bookService.returnBorrowBook({
+      'book-id': this.selectedBook?.id as number
+    }).subscribe({
+      next: () => {
+        if (withFeedback) {
+          this.giveFeedback();
+        }
+        this.selectedBook = undefined;
+        this.findAllBorrowedBooks();
+      }
+    });
+  }
+
+  giveFeedback() {
+    this.feedbackService.saveFeedback({
+      body: this.feedbackRequest
+    }).subscribe({
+      next: () => {
+
+      }
+    });
   }
 }
