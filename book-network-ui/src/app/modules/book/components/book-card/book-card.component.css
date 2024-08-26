@@ -1,0 +1,15 @@
+.min-width-icon {
+  min-width: 2rem;
+}
+
+i {
+  cursor: pointer;
+}
+
+div.card {
+  max-height: 550px;
+  min-height: 550px;
+}
+div img {
+  min-height: 200px;
+}/*# sourceMappingURL=book-card.component.css.map */

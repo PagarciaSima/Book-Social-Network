@@ -27,7 +27,6 @@ export class LoginComponent {
   errorMsg: Array<string> = []
 
   login() {
-    this.tokenService.clearToken();
 
     this.errorMsg = [];
     this.authService.authenticate({
