@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.pablo</groupId>
 	<artifactId>book-network</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<name>book-network</name>
 	<description>Spring Boot project for Book Social Network</description>
 	<url/>
